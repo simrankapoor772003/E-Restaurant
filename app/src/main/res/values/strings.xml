@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">E-RESTAURANT</string>
+    <string name="title">SIMI\'s E-RESTAURANT</string>
+    <string name="welcome">ORDER YUMMY FOOD</string>
+    <string name="place">PLACE ORDER</string>
+    <string name="placedtitle">ORDER PLACED</string>
+</resources>
