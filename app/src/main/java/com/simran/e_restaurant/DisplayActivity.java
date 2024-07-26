@@ -28,35 +28,31 @@ public class DisplayActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             final String id = cursor.getString(0);
             String name = cursor.getString(1);
-            String age = cursor.getString(2);
+            String contact = cursor.getString(2); // Assuming 'contact' here
 
             TextView textView = new TextView(this);
-            textView.setText("ID: " + id + " Name: " + name + " Age: " + age);
+            textView.setText("ID: " + id + " Name: " + name + " Contact: " + contact);
             layout.addView(textView);
 
             Button update = new Button(this);
             update.setText("Update");
-            update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), UpdateActivity.class);
-                    intent.putExtra("id", id);
-                    startActivity(intent);
-                }
+            update.setOnClickListener(v -> {
+                Intent intent = new Intent(getApplicationContext(), UpdateActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
             });
             layout.addView(update);
 
             Button delete = new Button(this);
             delete.setText("Delete");
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DB.deleteData(id);
-                    finish();
-                    startActivity(getIntent());
-                }
+            delete.setOnClickListener(v -> {
+                DB.deleteData(id);
+                // Reload data after delete
+                layout.removeAllViews();
+                loadData();
             });
             layout.addView(delete);
         }
+        cursor.close();
     }
 }

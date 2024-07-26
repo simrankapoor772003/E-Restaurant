@@ -60,7 +60,8 @@
             android:src="@drawable/ic_edit"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/edit_record"
-            android:tint="@color/edit_icon_color" />
+            android:tint="@color/edit_icon_color"
+            android:layout_alignParentRight="true" />
 
         <ImageButton
             android:id="@+id/btn_delete"
@@ -71,7 +72,8 @@
             android:src="@drawable/ic_delete"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/delete_record"
-            android:tint="@color/delete_icon_color" />
+            android:tint="@color/delete_icon_color"
+            android:layout_toLeftOf="@id/btn_edit" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

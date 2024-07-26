@@ -1,6 +1,7 @@
 package com.simran.e_restaurant;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,16 +24,34 @@ public class UpdateActivity extends AppCompatActivity {
         update = findViewById(R.id.btn_update);
         DB = new DBHelper(this);
 
+        // Get the ID from the intent
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DB.updateData(id, name.getText().toString(), age.getText().toString());
-                Intent intent = new Intent(getApplicationContext(), DisplayActivity.class);
-                startActivity(intent);
+        // Load data for the given ID
+        loadData();
+
+        update.setOnClickListener(v -> {
+            String updatedName = name.getText().toString();
+            String updatedAge = age.getText().toString();
+            boolean isUpdated = DB.updateData(id, updatedName, updatedAge);
+            if (isUpdated) {
+                Intent intent1 = new Intent(getApplicationContext(), DisplayActivity.class);
+                startActivity(intent1);
             }
         });
+    }
+
+    private void loadData() {
+        Cursor cursor = DB.getData();
+        while (cursor.moveToNext()) {
+            String currentId = cursor.getString(0);
+            if (currentId.equals(id)) {
+                name.setText(cursor.getString(1));
+                age.setText(cursor.getString(2));
+                break;
+            }
+        }
+        cursor.close();
     }
 }
