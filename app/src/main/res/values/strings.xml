@@ -4,4 +4,7 @@
     <string name="welcome">ORDER YUMMY FOOD</string>
     <string name="place">PLACE ORDER</string>
     <string name="placedtitle">ORDER PLACED</string>
+    <string name="edit_record">Edit Record</string>
+    <string name="delete_record">Delete Record</string>
+    <string name="update_record">Update Record</string>
 </resources>
